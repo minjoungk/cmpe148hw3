@@ -4,6 +4,7 @@ msg = "\r\n I love computer networks!"
 endmsg = "\r\n.\r\n"
 
 # Choose a mail server
+
 mailServer = 'localhost'
 mailPort = 25
 
@@ -26,27 +27,27 @@ if recv1[:3] != '250':
 
 # Send MAIL FROM command and print server response.
 
-mailfromCommand = 'MAIL FROM: <mail@mail.com>\r\n.'
-clientSocket.send(mailfromCommand)
+mail_from = 'MAIL FROM: <mail@mail.com>\r\n.'
+clientSocket.send(mail_from)
 recv1 = clientSocket.recv(1024)
 print(recv1)
 if recv1[:3] != '250':
     print('mail from 250 reply not received from server.')
 
 # Send RCPT TO command and print server response.
-rcpttoCommand = 'RCPT TO: <myemail@mail.com>\r\n'
-clientSocket.send(rcpttoCommand)
-recv1 = clientSocket.recv(1024)
-print(recv1)
+rctp_to = 'RCPT TO: <myemail@mail.com>\r\n'
+clientSocket.send(rctp_to)
+recv2 = clientSocket.recv(1024)
+print(recv2)
 if recv1[:3] != '250':
     print('rcpt to 250 reply not received from server.')
 
 # Send DATA command and print server response
-dataCommand = 'Data'
-print(dataCommand)
-clientSocket.send(dataCommand)
-recv1 = clientSocket.recv(1024)
-print(recv1)
+data = 'Data'
+print(data)
+clientSocket.send(data)
+recv3 = clientSocket.recv(1024)
+print(recv3)
 if recv1[:3] != '250':
     print('data 250 reply not received from server.')
 
@@ -54,23 +55,19 @@ if recv1[:3] != '250':
 message = raw_input('Enter Message Here: ')
 
 # Fill in end# Message ends with a single period.
-mailMessageEnd = '\r\n.\r\n'
-clientSocket.send(message + mailMessageEnd)
-recv1 = clientSocket.recv(1024)
-print(recv1)
+singlePeriod = '\r\n.\r\n'
+clientSocket.send(message + singlePeriod)
+recv4 = clientSocket.recv(1024)
+print(recv4)
 if recv1[:3] != '250':
     print('end msg 250 reply not received from server.')
 
-# Send QUIT command and get server response.
-quitCommand = 'Quit\r\n'
-print(quitCommand)
-clientSocket.send(quitCommand)
-recv1 = clientSocket.recv(1024)
-print(recv1)
+# Send QUIT command and get server res.
+quit = 'Quit\r\n'
+print(quit)
+clientSocket.send(quit)
+recv5 = clientSocket.recv(1024)
+print(recv5)
 if recv1[:3] != '250':
     print('quit 250 reply not received from server.')
 
-    pass
-
-if __name__ == '__main__':
-    main()
